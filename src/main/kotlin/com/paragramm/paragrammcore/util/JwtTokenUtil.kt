@@ -1,7 +1,9 @@
 package com.paragramm.paragrammcore.util
 
+import com.paragramm.paragrammcore.domain.exception.UnauthorizedException
 import com.paragramm.paragrammcore.repository.model.User
 import io.jsonwebtoken.Claims
+import io.jsonwebtoken.ExpiredJwtException
 import io.jsonwebtoken.Jws
 import io.jsonwebtoken.Jwts
 import org.springframework.beans.factory.annotation.Value
@@ -37,8 +39,13 @@ class JwtTokenUtil(
     }
 
     fun validateToken(token: String): Jws<Claims> {
-        return Jwts.parserBuilder().setSigningKey(SecretKeySpec(secretKey, ALGORITHM)).build()
-            .parseClaimsJws(token)
+        try {
+            return Jwts.parserBuilder()
+                .setSigningKey(SecretKeySpec(secretKey, ALGORITHM))
+                .build().parseClaimsJws(token)
+        } catch (e: ExpiredJwtException) {
+            throw UnauthorizedException("Token expired")
+        }
     }
 
     companion object {

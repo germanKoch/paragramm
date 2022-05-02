@@ -3,5 +3,6 @@ CREATE TABLE user_details(
     name text,
     phone text,
     username text,
-    password text
+    password text,
+    creation_date timestamp with time zone NOT NULL
 )

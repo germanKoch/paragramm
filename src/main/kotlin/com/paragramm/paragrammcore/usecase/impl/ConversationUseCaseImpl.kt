@@ -15,7 +15,7 @@ class ConversationUseCaseImpl(
 
     override fun findAllForUser(username: String): Flux<Conversation> {
         return userRepository.findByUsername(username).flatMapMany {
-            repository.findConversationsByUserId(it.id!!)
+            repository.findByUserId(it.id!!)
         }
     }
 

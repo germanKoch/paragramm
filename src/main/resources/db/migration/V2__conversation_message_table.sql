@@ -1,15 +1,17 @@
 CREATE TABLE conversation
 (
-    id      bigserial primary key,
-    title   text,
-    picture text
+    id            bigserial primary key,
+    title         text,
+    picture       text,
+    creation_date timestamp with time zone NOT NULL
 );
 
 CREATE TABLE user_conversation
 (
-    id bigserial primary key,
+    id              bigserial primary key,
     conversation_id bigint,
-    user_id bigint,
+    user_id         bigint,
+    creation_date   timestamp with time zone NOT NULL,
 
     constraint fk_user_conversation_conversation
         foreign key (conversation_id)
@@ -22,10 +24,12 @@ CREATE TABLE user_conversation
 
 CREATE TABLE message
 (
-    id             bigserial primary key,
+    id              bigserial primary key,
     conversation_id bigint,
     sender_id       bigint,
-    text           text,
+    text            text,
+    creation_date   timestamp with time zone NOT NULL,
+
     constraint fk_message_conversation
         foreign key (conversation_id)
             references conversation (id),
