@@ -7,10 +7,10 @@ import reactor.core.publisher.Flux
 
 interface ConversationRepository : ReactiveCrudRepository<Conversation, Long> {
 
-    @Query("SELECT * FROM user_conversation uc LEFT JOIN conversation c ON uc.conversation_id = c.id WHERE user_id=:user_id ")
+    @Query("SELECT * FROM conversation c WHERE c.id IN (SELECT conversation_id FROM user_conversation uc WHERE uc.user_id = :user_id)")
     fun findByUserId(userId: Long): Flux<Conversation>
 
-    @Query("SELECT * FROM user_conversation uc LEFT JOIN conversation c ON uc.conversation_id = c.id WHERE user_id=:user_id AND c.id > :lastId")
+    @Query("SELECT * FROM conversation c WHERE c.id IN (SELECT conversation_id FROM user_conversation uc WHERE uc.user_id = :user_id) AND c.id > :lastId")
     fun findByUserIdAndIdGreaterThan(userId: Long, lastId: Long): Flux<Conversation>
 
 }

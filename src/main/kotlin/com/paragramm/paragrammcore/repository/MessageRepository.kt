@@ -6,6 +6,8 @@ import reactor.core.publisher.Flux
 
 interface MessageRepository: ReactiveCrudRepository<Message, Long> {
 
+    fun findByConversationId(conversationId: Long): Flux<Message>
+
     fun findByConversationIdAndIdGreaterThan(conversationId: Long, messageId: Long): Flux<Message>
 
 }

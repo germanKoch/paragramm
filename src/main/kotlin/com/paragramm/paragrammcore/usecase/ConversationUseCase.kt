@@ -7,4 +7,6 @@ interface ConversationUseCase {
 
     fun findAllForUser(username: String): Flux<Conversation>
 
+    fun findAllForUserAfter(username: String, lastId: Long): Flux<Conversation>
+
 }

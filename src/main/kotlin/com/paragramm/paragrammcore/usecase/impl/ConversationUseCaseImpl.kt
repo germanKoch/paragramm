@@ -19,4 +19,10 @@ class ConversationUseCaseImpl(
         }
     }
 
+    override fun findAllForUserAfter(username: String, lastId: Long): Flux<Conversation> {
+        return userRepository.findByUsername(username).flatMapMany {
+            repository.findByUserIdAndIdGreaterThan(it.id!!, lastId)
+        }
+    }
+
 }

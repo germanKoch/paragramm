@@ -4,11 +4,6 @@ server:
     include-stacktrace: never
 
 spring:
-  r2dbc:
-    url: r2dbc:${db.url}
-    username: ${db.username}
-    password: ${db.password}
-
   flyway:
     baseline-on-migrate: true
     url: jdbc:${db.url}
@@ -19,6 +14,9 @@ auth:
   secret-key: CktcqpFTqLKujLr9RK4XZoAUl+6OHK5pTho8F9nWybw=
   expiration-hours: 1
 db:
-  url: postgresql://localhost:5432/paragramm
+  host: localhost
+  port: 5432
+  db: paragramm
+  url: postgresql://${db.host}:${db.port}/${db.db}
   username: postgres
   password: postgres

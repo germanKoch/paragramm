@@ -5,6 +5,8 @@ import reactor.core.publisher.Flux
 
 interface MessageUseCase {
 
-    fun getAll(): Flux<Message>
+    fun findAll(conversationId: Long): Flux<Message>
+
+    fun findAllAfter(conversationId: Long, lastId: Long): Flux<Message>
 
 }
