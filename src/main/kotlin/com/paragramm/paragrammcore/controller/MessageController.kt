@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 import reactor.core.publisher.Flux
+import java.security.Principal
 
 @RestController
 @RequestMapping("/api/message")
@@ -15,12 +16,12 @@ class MessageController(
 ) {
 
     @GetMapping("/{conversationId}")
-    fun getAll(@PathVariable conversationId: Long): Flux<Message> {
-        return messageUseCase.findAll(conversationId)
+    fun getAll(@PathVariable conversationId: Long, principal: Principal): Flux<Message> {
+        return messageUseCase.findAll(conversationId, principal.name)
     }
 
     @GetMapping("/{conversationId}/after/{lastId}")
-    fun getAllAfter(@PathVariable conversationId: Long, @PathVariable lastId: Long): Flux<Message> {
-        return messageUseCase.findAllAfter(conversationId, lastId)
+    fun getAllAfter(@PathVariable conversationId: Long, @PathVariable lastId: Long, principal: Principal): Flux<Message> {
+        return messageUseCase.findAllAfter(conversationId, lastId, principal.name)
     }
 }
