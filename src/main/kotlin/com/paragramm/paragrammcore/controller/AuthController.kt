@@ -1,7 +1,7 @@
 package com.paragramm.paragrammcore.controller
 
-import com.paragramm.paragrammcore.controller.resource.AuthRequest
-import com.paragramm.paragrammcore.controller.resource.AuthResponse
+import com.paragramm.paragrammcore.domain.model.AuthRequest
+import com.paragramm.paragrammcore.domain.model.AuthResponse
 import com.paragramm.paragrammcore.usecase.AuthUseCase
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.PostMapping

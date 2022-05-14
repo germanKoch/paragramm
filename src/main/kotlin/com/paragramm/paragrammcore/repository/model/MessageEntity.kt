@@ -1,28 +1,24 @@
 package com.paragramm.paragrammcore.repository.model
 
-import com.fasterxml.jackson.annotation.JsonFormat
 import org.springframework.data.annotation.Id
 import org.springframework.data.domain.Persistable
 import org.springframework.data.relational.core.mapping.Table
 import java.time.ZonedDateTime
 
-@Table("user_details")
-data class User(
+@Table("message")
+data class MessageEntity(
     @Id private var id: Long?,
-    val name: String,
-    val phone: String,
-    val username: String,
-    val password: String,
-    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ssz")
-    val creationDate: ZonedDateTime
+    val conversationId: Long,
+    val senderId: Long?,
+    val text: String?,
+    val creationDate: ZonedDateTime?
 ) : Persistable<Long> {
+
+    override fun getId(): Long? = id
 
     fun setId(id: Long?) {
         this.id = id
     }
 
-    override fun getId(): Long? = id
-
     override fun isNew(): Boolean = id == null
-
 }

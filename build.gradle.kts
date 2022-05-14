@@ -3,7 +3,9 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     id("org.springframework.boot") version "2.6.2"
     id("io.spring.dependency-management") version "1.0.11.RELEASE"
+
     kotlin("jvm") version "1.6.10"
+    kotlin("kapt") version "1.6.10"
     kotlin("plugin.spring") version "1.6.10"
 }
 
@@ -40,6 +42,10 @@ dependencies {
     implementation("io.jsonwebtoken:jjwt-api:0.11.5")
     implementation("io.jsonwebtoken:jjwt-impl:0.11.5")
     implementation("io.jsonwebtoken:jjwt-jackson:0.11.5")
+
+    //MapStruct
+    implementation("org.mapstruct:mapstruct:1.5.0.RC1")
+    kapt("org.mapstruct:mapstruct-processor:1.5.0.RC1")
 
     //Test
     testImplementation("org.springframework.boot:spring-boot-starter-test")

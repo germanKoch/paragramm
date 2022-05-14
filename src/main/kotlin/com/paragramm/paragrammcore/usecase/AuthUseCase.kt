@@ -1,7 +1,7 @@
 package com.paragramm.paragrammcore.usecase
 
-import com.paragramm.paragrammcore.controller.resource.AuthRequest
-import com.paragramm.paragrammcore.controller.resource.AuthResponse
+import com.paragramm.paragrammcore.domain.model.AuthRequest
+import com.paragramm.paragrammcore.domain.model.AuthResponse
 import reactor.core.publisher.Mono
 
 interface AuthUseCase {

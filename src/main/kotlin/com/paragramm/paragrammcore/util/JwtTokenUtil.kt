@@ -1,7 +1,7 @@
 package com.paragramm.paragrammcore.util
 
 import com.paragramm.paragrammcore.domain.exception.UnauthorizedException
-import com.paragramm.paragrammcore.repository.model.User
+import com.paragramm.paragrammcore.repository.model.UserEntity
 import io.jsonwebtoken.Claims
 import io.jsonwebtoken.ExpiredJwtException
 import io.jsonwebtoken.Jws
@@ -24,7 +24,7 @@ class JwtTokenUtil(
     private val secretKey = BASE64.decode(secretKeyStr)
     private val expirationDuration = Duration.of(expirationHours, ChronoUnit.HOURS)
 
-    fun generateToken(user: User): String {
+    fun generateToken(user: UserEntity): String {
         val nowInstant = Instant.now()
 
         val now = Date.from(nowInstant)

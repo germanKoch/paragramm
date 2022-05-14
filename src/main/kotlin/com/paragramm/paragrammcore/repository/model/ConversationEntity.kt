@@ -1,16 +1,15 @@
 package com.paragramm.paragrammcore.repository.model
 
-import com.fasterxml.jackson.annotation.JsonFormat
 import org.springframework.data.annotation.Id
 import org.springframework.data.domain.Persistable
+import org.springframework.data.relational.core.mapping.Table
 import java.time.ZonedDateTime
 
-data class Message(
+@Table("conversation")
+class ConversationEntity(
     @Id private var id: Long?,
-    val conversationId: Long,
-    val senderId: Long?,
-    val text: String?,
-    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ssz")
+    val title: String?,
+    val picture: String?,
     val creationDate: ZonedDateTime?
 ) : Persistable<Long> {
 
@@ -21,4 +20,5 @@ data class Message(
     }
 
     override fun isNew(): Boolean = id == null
+
 }
